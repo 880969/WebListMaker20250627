@@ -27,7 +27,7 @@
  * Date Created: 2025-06-24
  * Description:
  * Superior Cabinet:
- * Version: 1.00.01
+ * Version: 1.00.02
  */
 let linkData = [];
 
@@ -36,10 +36,10 @@ function addLink() {
     const comment = document.getElementById("commentInput").value;
     const linkList = document.getElementById("linkList");
 
-    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-        alert("有効なURLを入力してください（http:// または https://）");
-        return;
-    }
+    //if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    //    alert("有効なURLを入力してください（http:// または https://）");
+    //    return;
+    //}
 
     const li = document.createElement("li");
     const link = document.createElement("a");
