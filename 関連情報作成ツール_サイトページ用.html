@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>関連情報</title>
+</head>
+<body>
+  <!-- 以下、元のHTMLコードをそのまま貼り付け -->
+  <div>
+  <input type="text" id="linkInput" placeholder="https://example.com" style="width:300px;" />
+  <input type="text" id="commentInput" placeholder="リンク名や説明を入力" style="width:200px; margin-left:10px;" />
+  <button onclick="addLink()">リンクを追加</button>
+  <button onclick="exportHTML()">関連情報.htmlとして保存</button>
+</div>
+
+<div id="linkContainer" style="margin-top:10px;">
+  <ul id="linkList"></ul>
+</div>
+
+<script>
+/**
+ * File Name: 関連情報作成ツール.html
+ * Author: mikio_ishiguro
+ * Date Created: 2025-06-24
+ * Description:
+ * Superior Cabinet:
+ * Version: 1.00.00
+ */
+let linkData = [];
+
+function addLink() {
+    const url = document.getElementById("linkInput").value;
+    const comment = document.getElementById("commentInput").value;
+    const linkList = document.getElementById("linkList");
+
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        alert("有効なURLを入力してください（http:// または https://）");
+        return;
+    }
+
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.textContent = comment || url; // コメントが空ならURLを表示
+    link.style.color = "blue";
+    link.style.textDecoration = "underline";
+    link.style.marginRight = "10px";
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "編集";
+    editBtn.onclick = function () {
+        const newComment = prompt("新しいリンク名を入力してください：", comment);
+        if (newComment !== null) {
+            link.textContent = newComment;
+            const index = linkData.findIndex(item => item.url === url && item.comment === comment);
+            if (index !== -1) {
+                linkData[index].comment = newComment;
+            }
+        }
+    };
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "削除";
+    deleteBtn.onclick = function () {
+        linkList.removeChild(li);
+        linkData = linkData.filter(item => !(item.url === url && item.comment === comment));
+    };
+    li.appendChild(link);
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
+    linkList.appendChild(li);
+    linkData.push({ url, comment });
+    document.getElementById("linkInput").value = "";
+    document.getElementById("commentInput").value = "";
+}
+
+function exportHTML() {
+    let htmlContent = `
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>関連情報</title>
+</head>
+<body>
+  <ul>
+    <!-- ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.url}</a>（備考: ${item.comment}）</li>`).join("\n")} -->
+    ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.comment || item.url}</a></li>`).join("\n")}
+  </ul>
+</body>
+</html>`;
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "関連情報.html";
+    a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
