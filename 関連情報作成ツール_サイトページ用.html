@@ -27,7 +27,7 @@
  * Date Created: 2025-06-24
  * Description:
  * Superior Cabinet:
- * Version: 1.00.04
+ * Version: 1.00.05
  */
 let linkData = [];
 
@@ -86,10 +86,8 @@ function exportHTML() {
   <title>関連情報</title>
 </head>
 <body>
-  <ul>
     <!-- ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.url}</a>（備考: ${item.comment}）</li>`).join("\n")} -->
     ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.comment || item.url}</a></li>`).join("\n")}
-  </ul>
 </body>
 </html>`;
     const blob = new Blob([htmlContent], { type: "text/html" });
