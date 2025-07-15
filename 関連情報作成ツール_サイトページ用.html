@@ -26,7 +26,7 @@
  * Date Created: 2025-06-24
  * Description:
  * Superior Cabinet:
- * Version: 1.00.06
+ * Version: 1.01.00
  */
 let linkData = [];
 
@@ -87,6 +87,41 @@ function exportHTML() {
 <body>
     <!-- ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.url}</a>（備考: ${item.comment}）</li>`).join("\n")} -->
     ${linkData.map(item => `<li><a href="${item.url}" target="_blank">${item.comment || item.url}</a></li>`).join("\n")}
+
+	<head>
+  <meta charset="UTF-8">
+  <title>？マーク付きヘルプボタン</title>
+  <style>
+    .help-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #0078D7;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .help-button:hover {
+      background-color: #005a9e;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://880969.github.io/WebListMaker20250627/%e9%96%a2%e9%80%a3%e6%83%85%e5%a0%b1%e4%bd%9c%e6%88%90%e3%83%84%e3%83%bc%e3%83%ab_%e3%82%b5%e3%82%a4%e3%83%88%e3%83%9a%e3%83%bc%e3%82%b8%e7%94%a8.html" class="help-button" target="_blank">？</</html>
+</body>
+
+	
 </body>
 </html>`;
     const blob = new Blob([htmlContent], { type: "text/html" });
