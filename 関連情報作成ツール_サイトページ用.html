@@ -15,6 +15,35 @@
   <button onclick="exportHTML()">関連情報.htmlとして保存</button>
 </div>
 
+  <style>
+    .help-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #7CFC00;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .help-button:hover {
+      background-color: #005a9e;
+    }
+  </style>
+  <body>
+  <a href="https://daifuku.sharepoint.com/:b:/r/sites/jp0011040/Shared%20Documents/%E9%96%A2%E9%80%A3%E3%82%BD%E3%83%95%E3%83%88/HTML%E3%83%BBJavaScript/%E8%AA%AC%E6%98%8E%E6%9B%B8.pdf?csf=1&web=1&e=abkt06" target="_blank" class="help-button">？</a>
+  </body>
+
+
 <div id="linkContainer" style="margin-top:10px;">
   <ul id="linkList"></ul>
 </div>
@@ -23,10 +52,10 @@
 /**
  * File Name: 関連情報作成ツール.html
  * Author: mikio_ishiguro
- * Date Created: 2025-06-24
+ * Date Created: 2025-07-17
  * Description:
  * Superior Cabinet:
- * Version: 1.01.00
+ * Version: 1.01.01
  */
 let linkData = [];
 
